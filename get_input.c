@@ -6,20 +6,19 @@
 char **get_input(char *input) {
     char **firstword = malloc(8 * sizeof(char *));
     if (firstword == NULL) {
-        optionfailed("malloc failed");
+        perror("malloc failed");
         exit(1);
     }
 
-    char *spaces = " ";
-    char *parsed;
+    char *parsed = NULL;
     int index = 0;
 
-    parsed = strtok(input, spaces);
+    parsed = strtok(input, " ");
     while (parsed != NULL) {
         firstword[index] = parsed;
         index++;
 
-        parsed = strtok(NULL, spaces);
+        parsed = strtok(NULL, " ");
     }
 
     firstword[index] = NULL;
