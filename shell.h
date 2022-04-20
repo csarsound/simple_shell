@@ -8,3 +8,4 @@
 
 int cd(char *path);
 char **get_input(char *input);
+char *readLine(void);
