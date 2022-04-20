@@ -2,7 +2,7 @@
    #include "shell.h"
 
 /**
- *prompt_cmd - Display a prompt and wait for the user to type a command
+ *readLine - Display a prompt and wait for the user to type a command
  *Return: command entred by user
  */
 char *readLine(void)
