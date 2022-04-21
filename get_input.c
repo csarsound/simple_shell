@@ -1,8 +1,7 @@
 
 #include "shell.h"
-#define DELIMITA " \t\r\n"
 /**
- * get_input - Tomamos una cadena como input tokenisar.
+ * get_input - Tomamos una cadena como input tokenisat.
  * @input: string
  * Return: matriz de cadena
  */
@@ -13,27 +12,20 @@ char **get_input(char *input)
 	char *parsed = NULL;
 	int index = 0;
 
-	command = malloc(sizeof(char *) * BUFFER_SIZE);
-
+	command = malloc(64 * sizeof(char *));
 	if (command == NULL)
 	{
 		perror("malloc failed");
-		return (NULL);
+		exit(1);
 	}
 
-	if (input == NULL)
-	{
-		parsed[0] = "";
-		return (parsed);
-	}
-
-	parsed = strtok(input, DELIMITA);
+	parsed = strtok(input, " ");
 
 	while (parsed != NULL)
 	{
 		command[index] = parsed;
 		index++;
-		parsed = strtok(NULL, DELIMITA);
+		parsed = strtok(NULL, " ");
 	}
 	command[index] = NULL;
 	return (command);

@@ -11,6 +11,8 @@ char *readLine(void)
 	int index;
 	char *input;
 
+	input = NULL;
+
 	if (isatty(STDIN_FILENO))
 		printf("$: ");
 	index = getline(&input, &size, stdin);
