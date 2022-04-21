@@ -8,7 +8,7 @@
 
 char **get_input(char *input)
 {
-	char **command = malloc(400 * sizeof(char *));
+	char **command = malloc(sizeof(*input));
 	char *parsed = NULL;
 	int index = 0;
 
