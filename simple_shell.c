@@ -32,6 +32,7 @@ int main(void)
 			continue;
 		}
 		child_pid = fork();
+		
 		if (child_pid < 0)
 		{
 			perror("Fork failed");
