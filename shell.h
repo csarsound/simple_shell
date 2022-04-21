@@ -1,3 +1,7 @@
+#ifndef H_SHELL
+#define H_SHELL
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,3 +14,5 @@
 int cd(char *path);
 char **get_input(char *input);
 char *readLine(void);
+
+#endif
