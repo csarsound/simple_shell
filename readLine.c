@@ -15,16 +15,23 @@ char *readLine(void)
 
 	if (isatty(STDIN_FILENO))
 		printf("$: ");
-	index = getline(&input, &size, stdin);
-	if (index == EOF)
-	{
-		free(input);
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
-		exit(EXIT_SUCCESS);
-	}
-	input[index - 1] = '\0';
+
+	getline(&input, &size, stdin);
 	
-	free(input);
+	if (_strcmp(input, "\n") == 0)
+	{
+		
+		free(input);
+		return (NULL);
+	}
+	while (input[index])
+	{
+		index++;
+	}
+	if (index <= 1)
+	{
+		fflush(stdin);
+		input = "";
+	}
 	return (input);
 }

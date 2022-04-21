@@ -1,6 +1,7 @@
 #ifndef H_SHELL
 #define H_SHELL
 
+#define BUFFER_SIZE 64
 
 #include <stdlib.h>
 #include <stdio.h>
