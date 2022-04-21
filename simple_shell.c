@@ -10,7 +10,7 @@ int main(void)
 	pid_t child_pid;
 	int stat_loc;
 
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, signal_handler);
 	while (1)
 	{
 		input = readLine();
@@ -21,6 +21,10 @@ int main(void)
 			free(command);
 			continue;
 		}
+
+		input = NULL;
+		input = parsing_cmd(command);
+
 		if (strcmp(command[0], "cd") == 0)
 		{
 			if (cd(command[1]) < 0)
@@ -34,7 +38,8 @@ int main(void)
 			exit(1);
 		}
 		if (child_pid == 0)
-		{/* Never returns if the call is successful */
+		{
+			signal(SIGINT, SIG_DFL);/* Never returns if the call is successful */
 			if (execvp(command[0], command) < 0)
 			{
 				perror(command[0]);

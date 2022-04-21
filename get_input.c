@@ -12,7 +12,7 @@ char **get_input(char *input)
 	char *parsed = NULL;
 	int index = 0;
 
-	command = malloc(8 * sizeof(char *));
+	command = malloc(sizeof(char *) * BUFFER_SIZE);
 	if (command == NULL)
 	{
 		perror("malloc failed");
