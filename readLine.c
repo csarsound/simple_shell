@@ -11,27 +11,17 @@ char *readLine(void)
 	int index;
 	char *input;
 
-	input = NULL;
-
 	if (isatty(STDIN_FILENO))
 		printf("$: ");
-
-	getline(&input, &size, stdin);
-	
-	if (_strcmp(input, "\n") == 0)
+	index = getline(&input, &size, stdin);
+	if (index == EOF)
 	{
-		
 		free(input);
-		return (NULL);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "\n", 1);
+		exit(EXIT_SUCCESS);
 	}
-	while (input[index])
-	{
-		index++;
-	}
-	if (index <= 1)
-	{
-		fflush(stdin);
-		input = "";
-	}
+	input[index - 1] = '\0';
+
 	return (input);
 }
