@@ -19,5 +19,6 @@ void signal_handler(int sig_num);
 char *parsing_cmd(char **cmd);
 int _strlen(char *s);
 void clear_memory(char **args);
+int _strcmp(char *s1, char *s2);
 
 #endif
