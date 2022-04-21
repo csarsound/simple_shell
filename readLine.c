@@ -24,6 +24,7 @@ char *readLine(void)
 		exit(EXIT_SUCCESS);
 	}
 	input[index - 1] = '\0';
-
+	
+	free(input);
 	return (input);
 }
