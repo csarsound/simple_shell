@@ -3,12 +3,15 @@
  * main - function main
  * Return: 0
  */
-int main(void)
+int main(int argc __attribute__((unused)), char **argv)
 {
 	char **command;
 	char *input;
 	pid_t child_pid;
 	int stat_loc;
+
+	(void) argc;
+	(void) argv;
 
 	signal(SIGINT, signal_handler);
 	while (1)
@@ -32,7 +35,7 @@ int main(void)
 			continue;
 		}
 		child_pid = fork();
-		
+
 		if (child_pid < 0)
 		{
 			perror("Fork failed");

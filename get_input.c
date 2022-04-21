@@ -19,13 +19,13 @@ char **get_input(char *input)
 		exit(1);
 	}
 
-	parsed = strtok(input, " ");
+	parsed = strtok(input, WHITESPACE);
 
 	while (parsed != NULL)
 	{
 		command[index] = parsed;
 		index++;
-		parsed = strtok(NULL, " ");
+		parsed = strtok(NULL, WHITESPACE);
 	}
 	command[index] = NULL;
 	return (command);
