@@ -1,92 +1,35 @@
-# Manual of Shell
-"`hsh `- General Commands Manual"
 
-## .SH NAME
+##.SH NAME
+hsh \- POSIX-compliant command interpreter
 
- simple_shell -` hsh`
-- command line interpreter or shell
+##.SH SYNOPSIS
+hsh [options]
 
+##.SH DESCRIPTION
+.B hsh is a POSIX-compliant command interpreter (shell).
+It is implemented by re-execing as either bash(1), dash(1), or zsh(1)
 
-## .SH SYNOPSIS
+.I  format
+ Find and execute the commands given on the prompt
 
-  .`/hsh`
- (no options yet)
+If the command does not exist in the PATH return command not found
 
+##.SH OPTIONS
+The hsh does not take any options.
 
+## .SH RETURN
+On successful return 1
 
-## .SH DESCRIPTION
+## .SH EXAMPLE
+ hsh ls
 
-simple_shell is a command line interpreter, or shell, in the tradition of the first Unix shell written by Ken Thompson. This shell is intentionally minimalistic, yet includes the basic functionality of a traditional Unix-like command line interface. simple_shell is desgined to run on the linux environment.
+Prints on the standard output the list of files and directories of the current path
 
-
-## .SH OVERVIEW
-
-Reading from either the terminal or files, simple_shell interprets and executes commands.
-
-
-.B Invocation
-.in +2n
-\fBhsh\fR can be invoked both interactively and non-interactively.
-If \fBhsh\fR is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
-
-If \fBhsh\fR is invoked with standard input connected to a terminal (determined by \fIisatty(3)\fR), an \fIinteractive\fR shell is opened.
-When executing interactively, \fBhsh\fR displays the prompt \fI$ \fR when it is ready to read a command.
-
-Alternatively, if command line arguments are supplied upon invocation, \fBhsh\fR treats the first argument as a file from which to read commands.
-The supplied file should contain one command per line.
-.B hsh\fR runs each of the commands contained in the file in order before exiting.
-.in
-
-## .SH BUILTINS
-
-The following builtin commands are supported:
-
- IT
-` env`
-- prints the environment variables
-
-`exit`
-- exits the program
-
-Example of builtin command:
-`IP`
-`br`
-`\&`
-`RS`
-`\&$ env`
-`br`
-
-\&TERM=xterm-256color
-.br
-\&SHELL=/bin/bash
-.br
-\&COLORTERM=truecolor
-.br
-\&TERM_PROGRAM_VERSION=1.66.2
-.br
-\&WSL_DISTRO_NAME=Ubuntu-20.04
-.br
-\&NAME=Code
-.br
-\&PWD=/home/edwin/simple_shell
-.br
-\&LOGNAME=edwin
-.br
-\&VSCODE_GIT_ASKPASS_NODE=/home/edwin/.vscode-server/bin/dfd34e8260c270da74b5c2d86d61aee4b6d56977/node
-.br
-\&MOTD_SHOWN=update-motd
-.br
-\&HOME=/home/edwin
-.br
-\&LANG=C.UTF-8
-.br
-\&WSL_INTEROP=/run/WSL/8_interop
-.br
-
-
+##.SH SEE ALSO
+bash(1), dash(1), ksh(1), tcsh(1), zsh(1) 
 ## .SH BUGS
-No known bugs at this writing (April 19, 2022).
-Please report any issues to the authors.
+
+No known bugs, so far.
 
 ## .SH AUTHORS
 
