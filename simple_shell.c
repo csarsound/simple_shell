@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 	char *input;
 	pid_t child_pid;
 	int stat_loc;
+	char *str;
 
 	(void) argc;
 	(void) argv;
@@ -30,7 +31,7 @@ int main(int argc, char **argv)
 
 		if(input)
 		{
-
+			str = _path(command[0]);
 		if (strcmp(command[0], "cd") == 0)
 		{
 			if (cd(command[1]) < 0)

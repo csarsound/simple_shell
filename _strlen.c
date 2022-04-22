@@ -15,3 +15,25 @@ int _strlen(char *str)
 	}
 	return (i);
 }
+
+/**
+ *_strcat - concatinate two strings together
+ *@src: input
+ *@dest: input
+ *Return: a string
+ */
+char *_strcat(char *dest, char *src)
+{
+	int i = 0, j = 0;
+
+	i = _strlen(dest);
+
+	while (*(src + j) != '\0')
+	{
+		*(dest + i) = *(src + j);
+		i++;
+		j++;
+	}
+	*(dest + i) = '\0';
+	return (dest);
+}
