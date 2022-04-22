@@ -2,6 +2,7 @@
 
 ## flowchart
 
+[![flowchar.png](https://i.postimg.cc/9FSzjh5Y/flowchar.png)](https://postimg.cc/rK1qS7pD)
 
 ## Introduction
 
