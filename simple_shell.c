@@ -51,7 +51,7 @@ int main(void)
 	size_t bufferinput = 0;
 
 	/* define prompt */
-	do {
+	while (1) {
 	if (isatty(0))
 	{
 		write(1, JR_PROMPT, 2);
