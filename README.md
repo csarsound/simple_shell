@@ -5,7 +5,7 @@
 
 ## Introduction
 
-This repository is the development of a simple Unix Shell by Command Line Interface, implemented in C Language, and created by the Authors.
+This repository is the development of a simple Unix Shell **Shell** by Command Line Interface, implemented in C Language, and created by the Authors.
 
 This shell mimics the behaviour of the implemented Unix **Shell /bin/sh** but simple by definition, that is, althought it doesn't contain all functionalities of the original sh, the implemented functions must work in the same way as in the original sh.
 
