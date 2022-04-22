@@ -3,12 +3,13 @@
  * main - function main
  * Return: 0
  */
-int main(int argc __attribute__((unused)), char **argv)
+int main(int argc, char **argv, char **env)
 {
 	char **command;
 	char *input;
 	pid_t child_pid;
 	int stat_loc;
+	char **commands;
 
 	(void) argc;
 	(void) argv;
@@ -43,10 +44,11 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 		if (child_pid == 0)
 		{
+			commands = get_route(command, env);
 			signal(SIGINT, SIG_DFL);/* Never returns if the call is successful */
-			if (execvp(command[0], command) < 0)
+			if (execvp(commands[0], commands) < 0)
 			{
-				perror(command[0]);
+				perror(commands[0]);
 				exit(1);
 			}
 		} else
@@ -55,8 +57,8 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 		if (!input)
 		free(input);
-		if (!command)
-		free(command);
+		if (!commands)
+		free(commands);
 	}
 	return (0);
 }
