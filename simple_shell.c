@@ -28,6 +28,9 @@ int main(int argc, char **argv)
 		input = NULL;
 		input = parsing_cmd(command);
 
+		if(input)
+		{
+
 		if (strcmp(command[0], "cd") == 0)
 		{
 			if (cd(command[1]) < 0)
@@ -52,6 +55,7 @@ int main(int argc, char **argv)
 		} else
 		{
 			waitpid(child_pid, &stat_loc, WUNTRACED);
+		}
 		}
 		if (!input)
 		free(input);
