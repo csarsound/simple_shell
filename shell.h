@@ -18,8 +18,5 @@ char *readLine(void);
 void signal_handler(int sig_num);
 char *parsing_cmd(char **cmd);
 void clear_memory(char **args);
-char **get_route(char **commands, char **env);
 int _strlen(char *str);
-char *get_env_path(char **input, char *compare);
-void free_arrays(char **array);
 #endif
