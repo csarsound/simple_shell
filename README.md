@@ -2,6 +2,7 @@
 
 ## flowchart
 
+[![flowchar.png](https://i.postimg.cc/9FSzjh5Y/flowchar.png)](https://postimg.cc/rK1qS7pD)
 
 ## Introduction
 
@@ -40,5 +41,6 @@ works properly, in the same way as in sh, and many others edge cases.
 
 ## Authors
 
-Juan ballesteros
+Juan ballesteros          
+
 Cesar Martinez
