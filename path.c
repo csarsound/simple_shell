@@ -66,3 +66,4 @@ char *find_env_path(void)
 	}
 	return (str_path);
 }
+
