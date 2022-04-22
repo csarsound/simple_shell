@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 
 		if(input)
 		{
-			str = _path(command[0]);
+			str = _path(input[0]);
 		if (strcmp(command[0], "cd") == 0)
 		{
 			if (cd(command[1]) < 0)
