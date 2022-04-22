@@ -23,29 +23,3 @@ char *parsing_cmd(char **cmd)
 		return (cmd[0]);
 	}
 }
-
-/**
- * free_arrays - function that free memory already used
- * @array: memory to free
- */
-void free_arrays(char **array)
-{
-	/*int j;*/
-	/*int k;*/
-
-	if (array == NULL || *array == NULL)
-		return;
-	/*j = 0;*/
-	/*k = 0;*/
-
-	/*while (array[j])*/
-	/*j++;*/
-	/*while (k < j)*/
-	/*{*/
-		/*free(array[k]);*/
-		/*k++;*/
-	/*}*/
-	/*if (array[j] == NULL)*/
-	/*free(array[j]);*/
-	free(array);
-}
