@@ -5,14 +5,17 @@
  */
 int main(int argc, char **argv)
 {
-	char **command;
-	char *input;
+	char **command, *input, *env_path, *str;
+	
 	pid_t child_pid;
 	int stat_loc;
-	char *str;
+	
+
 
 	(void) argc;
 	(void) argv;
+
+	env_path = getenv("PATH");
 
 	signal(SIGINT, signal_handler);
 	while (1)
@@ -29,9 +32,7 @@ int main(int argc, char **argv)
 		input = NULL;
 		input = parsing_cmd(command);
 
-		if(input)
-		{
-			str = _path(input[0]);
+	
 		if (strcmp(command[0], "cd") == 0)
 		{
 			if (cd(command[1]) < 0)
@@ -56,7 +57,6 @@ int main(int argc, char **argv)
 		} else
 		{
 			waitpid(child_pid, &stat_loc, WUNTRACED);
-		}
 		}
 		if (!input)
 		free(input);
