@@ -41,5 +41,6 @@ works properly, in the same way as in sh, and many others edge cases.
 
 ## Authors
 
-Juan ballesteros
+Juan ballesteros          
+
 Cesar Martinez
