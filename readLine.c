@@ -1,29 +1,28 @@
-
-   #include "shell.h"
+#include "shell.h"
 
 /**
- *readLine - Display a prompt and wait for the user to type a command
- *Return: command entred by user
- */
-char *readLine(void)
+* read_input - Reads stdin
+* @input: char double pointer
+* @bufferinput: size_t pointer
+* Return: Char
+*/
+
+char *read_input(char **input, size_t *bufferinput)
 {
-	size_t size = 0;
-	int index;
-	char *input;
+ssize_t readchar = 0;
+readchar = getline(input, bufferinput, stdin);
 
-	input = NULL;
-
-	if (isatty(STDIN_FILENO))
-		printf("$: ");
-	index = getline(&input, &size, stdin);
-	if (index == EOF)
+	/* check if getline works */
+	if (readchar == EOF)
 	{
-		free(input);
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
+		/* reach the end */
+		free(*input);
 		exit(EXIT_SUCCESS);
 	}
-	input[index - 1] = '\0';
-
-	return (input);
+	if (readchar == -1)
+	{
+		free(*input);
+		exit(EXIT_FAILURE);
+	}
+return (*input);
 }

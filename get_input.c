@@ -1,32 +1,54 @@
 
 #include "shell.h"
+
+#define TOKEN_BUFFER 128
+#define TOKEN_DELIMITATOR " \a\r\t\n"
+
 /**
- * get_input - Tomamos una cadena como input tokenisat.
- * @input: string
- * Return: matriz de cadena
- */
+* break_input - Create tokens
+* @input: char pointer
+* Return: char double pointer
+*/
 
-char **get_input(char *input)
+char **break_input(char *input)
 {
-	char **command;
-	char *parsed = NULL;
-	int index = 0;
+int buffertoken = TOKEN_BUFFER, position = 0;
+char **alltokens = malloc(buffertoken * sizeof(char *));
+char **talltok;
+char *token;
 
-	command = malloc(sizeof(char *) * BUFFER_SIZE);
-	if (command == NULL)
+	if (!alltokens)
 	{
-		perror("malloc failed");
-		exit(1);
+		free(alltokens);
+		exit(EXIT_FAILURE);
 	}
 
-	parsed = strtok(input, WHITESPACE);
-
-	while (parsed != NULL)
+	token = strtok(input, TOKEN_DELIMITATOR);
+	while (token != NULL)
 	{
-		command[index] = parsed;
-		index++;
-		parsed = strtok(NULL, WHITESPACE);
+		alltokens[position] = token;
+		position++;
+
+		if (position >= buffertoken)
+		{
+			buffertoken += TOKEN_BUFFER;
+			talltok = malloc(buffertoken * sizeof(char *));
+			talltok = alltokens;
+			free(alltokens);
+			/* new size */
+			alltokens = malloc(buffertoken * sizeof(char *));
+			alltokens = talltok;
+			free(talltok);
+			if (!alltokens)
+			{
+				free(alltokens);
+				exit(EXIT_FAILURE);
+			}
+		}
+	token = strtok(NULL, TOKEN_DELIMITATOR);
 	}
-	command[index] = NULL;
-	return (command);
+/* end all now */
+alltokens[position] = NULL;
+/* send to execute command */
+return (alltokens);
 }

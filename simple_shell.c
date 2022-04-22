@@ -1,67 +1,72 @@
 #include "shell.h"
+
 /**
- * main - function main
- * Return: 0
- */
-int main(int argc, char **argv)
+* bi_exit - exit
+* Return: always zero to change state
+*/
+
+int bi_exit(void)
 {
-	char **command, *input, *env_path, *str;
-	
-	pid_t child_pid;
-	int stat_loc;
-	
+	/* git change */
+	return(0);
+}
 
+/**
+* bi_env - gets environ vars
+* Return: always zero
+*/
 
-	(void) argc;
-	(void) argv;
+int bi_env(void)
+{
+int i = 0;
+int str_len;
 
-	env_path = getenv("PATH");
-
-	signal(SIGINT, signal_handler);
-	while (1)
+	/* get the environ */
+	while (environ[i] != NULL)
 	{
-		input = readLine();
-		command = get_input(input);
-		if (!command[0])
-		{/* Handle empty commands */
-			free(input);
-			free(command);
-			continue;
-		}
-
-		input = NULL;
-		input = parsing_cmd(command);
-
-	
-		if (strcmp(command[0], "cd") == 0)
-		{
-			if (cd(command[1]) < 0)
-			perror(command[1]);/* Skip the fork */
-			continue;
-		}
-		child_pid = fork();
-
-		if (child_pid < 0)
-		{
-			perror("Fork failed");
-			exit(1);
-		}
-		if (child_pid == 0)
-		{
-			signal(SIGINT, SIG_DFL);/* Never returns if the call is successful */
-			if (execvp(command[0], command) < 0)
-			{
-				perror(command[0]);
-				exit(1);
-			}
-		} else
-		{
-			waitpid(child_pid, &stat_loc, WUNTRACED);
-		}
-		if (!input)
-		free(input);
-		if (!command)
-		free(command);
+		/* walk the environ to count */
+		str_len = _strlen(environ[i]);
+		/* print the environ */
+		write(1, environ[i], str_len);
+		write(1, "\n", 2);
+		i++;
 	}
-	return (0);
+	return (1);
+}
+
+/**
+* main - Entry point
+* Return: EXIT_SUCCESS
+*/
+
+int main(void)
+{
+/* config */
+/* loop for commands */
+
+	int state;
+	char *input = NULL;
+	char **args;
+	char *builtinlist[] = {"env", "exit"};
+	size_t bufferinput = 0;
+
+	/* define prompt */
+	do {
+	if (isatty(0))
+	{
+		write(1, JR_PROMPT, 2);
+	}
+	input = read_input(&input, &bufferinput);
+	/* start tokenization process */
+	args = break_input(input);
+	/* obtain info to break the loop */
+
+	state = run_command(args, builtinlist);
+	/* cleanup, free memory, etc */
+
+	free(args);
+	/* again */
+	} while (state);
+	free(input);
+return (EXIT_SUCCESS);
 }
